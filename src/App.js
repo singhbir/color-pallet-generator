@@ -36,6 +36,7 @@ function App() {
     Birvarinder Singh
     mainto: singhbirvarinder@gmail.com
     `);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function callGenApi() {
