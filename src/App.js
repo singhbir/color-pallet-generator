@@ -20,6 +20,24 @@ function App() {
     model: "default",
   };
 
+  function onmyLockColor(id) {
+    if (id === 0) {
+      setColor1({ ...color1, islocked: !color1.islocked });
+    }
+    if (id === 1) {
+      setColor2({ ...color2, islocked: !color2.islocked });
+    }
+    if (id === 2) {
+      setColor3({ ...color3, islocked: !color3.islocked });
+    }
+    if (id === 3) {
+      setColor4({ ...color4, islocked: !color4.islocked });
+    }
+    if (id === 4) {
+      setColor5({ ...color5, islocked: !color5.islocked });
+    }
+  }
+
   useEffect(() => {
     callGenApi();
     console.log(`
@@ -39,35 +57,43 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  //calling api for colors
   async function callGenApi() {
     let result = await axios.post(
       "http://colormind.io/api/",
       JSON.stringify(data)
     );
     let colors = result.data.result;
-    console.log(colors);
-    setColor1({
-      ...color1,
-      color: rgbToHex(colors[0][0], colors[0][1], colors[0][2]),
-    });
-    setColor2({
-      ...color2,
-      color: rgbToHex(colors[1][0], colors[1][1], colors[1][2]),
-    });
-    setColor3({
-      ...color3,
-      color: rgbToHex(colors[2][0], colors[2][1], colors[2][2]),
-    });
-    setColor4({
-      ...color4,
-      color: rgbToHex(colors[3][0], colors[3][1], colors[3][2]),
-    });
-    setColor5({
-      ...color5,
-      color: rgbToHex(colors[4][0], colors[4][1], colors[4][2]),
-    });
+
+    !color1.islocked &&
+      setColor1({
+        ...color1,
+        color: rgbToHex(colors[0][0], colors[0][1], colors[0][2]),
+      });
+
+    !color2.islocked &&
+      setColor2({
+        ...color2,
+        color: rgbToHex(colors[1][0], colors[1][1], colors[1][2]),
+      });
+    !color3.islocked &&
+      setColor3({
+        ...color3,
+        color: rgbToHex(colors[2][0], colors[2][1], colors[2][2]),
+      });
+    !color4.islocked &&
+      setColor4({
+        ...color4,
+        color: rgbToHex(colors[3][0], colors[3][1], colors[3][2]),
+      });
+    !color5.islocked &&
+      setColor5({
+        ...color5,
+        color: rgbToHex(colors[4][0], colors[4][1], colors[4][2]),
+      });
   }
 
+  // Function for converting the color to hex
   function componentToHex(c) {
     var hex = c.toString(16);
     return hex.length === 1 ? "0" + hex : hex;
@@ -77,6 +103,7 @@ function App() {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
   }
 
+  // Function for screen shot
   function screenshot() {
     window.scrollTo(0, 0);
     html2canvas(document.querySelector("#colorcontainer"), {
@@ -104,6 +131,7 @@ function App() {
           color3={color3}
           color4={color4}
           color5={color5}
+          onLockColor={(id) => onmyLockColor(id)}
         />
       </div>
       <div className="col-md-6 col-sm-12 mt-5 d-flex flex-column justify-content-center align-items-center">
