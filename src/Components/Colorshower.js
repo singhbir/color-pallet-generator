@@ -17,26 +17,20 @@ const Colorshower = ({
       {colors.map((color, id) => (
         <div className="row  align-items-center" key={id}>
           <div
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center colormain"
             style={{
               height: "20vh",
-              width: "90%",
               background: color.color,
             }}
           >
             <div className="bg-white text-black">{color.color}</div>
           </div>
           {color.islocked ? (
-            <FaLock
-              className="ml-3"
-              onClick={() => onLockColor(id)}
-              style={{ fontSize: "30px" }}
-            />
+            <FaLock className="ml-3 fa-lock" onClick={() => onLockColor(id)} />
           ) : (
             <FaUnlock
-              className="ml-3"
+              className="ml-3 fa-unlock"
               onClick={() => onLockColor(id)}
-              style={{ fontSize: "30px" }}
             />
           )}
         </div>

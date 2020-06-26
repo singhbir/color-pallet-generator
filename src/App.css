@@ -1,3 +1,18 @@
 ::-webkit-scrollbar {
   display: none;
 }
+.fa-unlock {
+  font-size: 30px;
+}
+.fa-lock {
+  font-size: 30px;
+}
+.colormain {
+  width: 90%;
+}
+
+@media only screen and (max-width: 600px) {
+  .colormain {
+    width: 80%;
+  }
+}
